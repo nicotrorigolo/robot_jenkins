@@ -1,11 +1,9 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Hello') {
-            steps {
-                sh 'ls -all'
-            }
-        }
+node{
+    def app
+    stage('Clone') {
+        checkout scm
+    }
+    stage('Build') {
+        sh 'ls -all'
     }
 }
