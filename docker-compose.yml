@@ -1,0 +1,34 @@
+version: '2'
+services:
+  jenkins:
+    build: .
+    container_name: 'jenkins'
+    labels:
+      kompose.service.type: nodeport
+    ports:
+      - '8080:8080'
+      - '443:8443'
+      - '50000:50000'
+    volumes:
+      - /srv/data/jenkins_data:/jenkins_home
+      - /srv/data/jenkins:/var/jenkins_config
+      # - /home/${myname}/jenkins_compose/jenkins_configuration:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  # docker:
+  #   image: docker:latest
+  #   container_name: 'docker'
+  #   tty: true
+  #   ports:
+  #     - '8081:8080'
+  #     - '444:8443'
+  #     - '50001:50000'
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+
+
+volumes:
+  jenkins_data:
+    driver: local
+  jenkins:
+    driver: local
