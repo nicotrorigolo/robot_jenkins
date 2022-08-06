@@ -1,11 +1,7 @@
-node any{
-    stages {
-        stage('build') {
-            steps {
-                sh 'docker pull mkbcrew/rbfwk'
-                sh 'docker run mkbcrew/rbfwk'
-                sh 'python --version'
-            }
-        }
+node{
+    stage('Build') {
+        sh 'docker pull mkbcrew/rbfwk'
+        sh 'docker run mkbcrew/rbfwk'
+        sh 'python --version'
     }
 }
