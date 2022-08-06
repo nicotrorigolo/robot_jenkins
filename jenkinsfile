@@ -4,6 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'docker pull yeasy/simple-web'
+                sh 'docker run -p 80:80 yeasy/simple-web'
             }
         }
     }
