@@ -1,5 +1,4 @@
-pipeline {
-    node any
+node any{
     stages {
         stage('build') {
             steps {
