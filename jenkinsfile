@@ -1,19 +1,16 @@
 pipeline {
-    agent none
+    agent any
     stages {
-        stage('Functional regression tests') {
-            agent { docker {
-                image 'ppodgorsek/robot-framework:latest'
-                args '--shm-size=1g -u root' }
+        stage('Test') {
+            steps{
+                sh 'docker run -v ${PWD}/reports:/opt/robotframework/reports:Z -v ${PWD}/Tests:/opt/robotframework/tests:Z \
+                            -e BROWSER=chrome ppodgorsek/robot-framework:latest'
             }
-            environment {
-                BROWSER = 'chrome'
-                ROBOT_TESTS_DIR = "$WORKSPACE/robot-tests"
-                ROBOT_REPORTS_DIR = "$WORKSPACE/robot-reports"
-            }
-            steps {
-                sh 'robot test_robot_google.robot'
-            }
+        }
+    }
+    post {
+        always {
+            archive (includes: 'reports/*.html')
         }
     }
 }

@@ -1,0 +1,17 @@
+FROM ppodgorsek/robot-framework:latest
+# FROM docker:latest
+# FROM ubuntu:20.04
+
+USER root
+
+# Mise à jour des programme du container
+RUN apt-get -y update
+RUN apt-get -y upgrade
+
+ARG DEBIAN_FRONTEND=noninteractive 
+
+RUN apt-get install -y git
+
+RUN git clone https://github.com/nicotrorigolo/robot_jenkins.git
+
+# CMD ["sleep", "3600"]
