@@ -11,6 +11,7 @@ ${time}    2
 *** Keywords ***
 Connexion au site de Google
     Open Browser    ${url}    ${browser}    # Ouvrir chrome
+    Capture Page Screenshot
    # Maximize Browser Window    # Mettre la fenetre de chrome en plein ecran
 
 *** Test Cases ***
