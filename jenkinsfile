@@ -12,9 +12,7 @@ pipeline {
                 ROBOT_REPORTS_DIR = "$WORKSPACE/robot-reports"
             }
             steps {
-                sh '''
-                    /opt/robotframework/bin/run-tests-in-virtual-screen.sh
-                '''
+                sh 'robot test_robot_google.robot'
             }
         }
     }
