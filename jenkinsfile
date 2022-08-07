@@ -1,5 +1,7 @@
-node any {
-    sh 'ls -all'
+node {  
+    stage('verif') { 
+        sh 'ls -all'
+    }
 }
 
 pipeline {
