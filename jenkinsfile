@@ -1,4 +1,7 @@
 pipeline {
+    node any {
+        sh 'ls -all'
+    }
     agent {
         docker { 
             image 'ppodgorsek/robot-framework:latest' 
