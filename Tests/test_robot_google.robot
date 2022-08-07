@@ -2,7 +2,7 @@
 Library           SeleniumLibrary
 
 *** Variables ***
-${browser}        chrome
+${browser}        Headless Chrome    #chrome
 ${url}    https://www.google.fr/
 ${time}    2
 @{search}    boulanger    pain    brioche    bonbon    Connexion
@@ -11,8 +11,8 @@ ${time}    2
 *** Keywords ***
 Connexion au site de Google
     Open Browser    ${url}    ${browser}    # Ouvrir chrome
+    Maximize Browser Window    # Mettre la fenetre de chrome en plein ecran
     Capture Page Screenshot
-   # Maximize Browser Window    # Mettre la fenetre de chrome en plein ecran
 
 *** Test Cases ***
 Google Index
