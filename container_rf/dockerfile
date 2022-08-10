@@ -95,6 +95,7 @@ RUN apt-get install -y git
 
 RUN git clone https://github.com/nicotrorigolo/robot_jenkins.git
 RUN mv robot_jenkins/tests/test_robot_google.robot .
+RUN mv robot_jenkins/requirements.txt .
 RUN mv robot_jenkins/tests/aaa.robot .
 RUN mv robot_jenkins/chromeConfiguration.py .
 
