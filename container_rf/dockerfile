@@ -11,8 +11,8 @@ FROM python:slim-buster
 
 # ARG DEBIAN_FRONTEND=noninteractive 
 
-# RUN apt-get -y update
-# RUN apt-get -y upgrade
+RUN apt-get -y update
+RUN apt-get -y upgrade
 
 # # WORKDIR /opt
 
@@ -91,14 +91,14 @@ FROM python:slim-buster
 # RUN mv robot_jenkins/Tests/test_robot_google.robot .
 
 
-RUN apt-get install  -y git
+RUN apt-get install -y git
 
 RUN git clone https://github.com/nicotrorigolo/robot_jenkins.git
-RUN mv robot_jenkins/Tests/test_robot_google.robot .
-RUN mv robot_jenkins/Tests/aaa.robot .
+RUN mv robot_jenkins/tests/test_robot_google.robot .
+RUN mv robot_jenkins/tests/aaa.robot .
 RUN mv robot_jenkins/chromeConfiguration.py .
 
-COPY src/env/drivers/Linux/chromedriver /usr/local/bin
+# COPY src/env/drivers/Linux/chromedriver /usr/local/bin
 
 RUN chmod +x /usr/local/bin/
 
