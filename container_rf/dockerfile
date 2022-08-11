@@ -111,26 +111,22 @@ RUN pip install -r requirements.txt
 # Notice that xvfb is an in-memory display server for Linux
 RUN apt-get update && \
     apt-get install -y libnss3 libdbus-1-dev && \
-    apt-get install -y xdg-utils libgbm1 libasound2 fonts-liberation xvfb
+    apt-get install -y xdg-utils libgbm1 libasound2 fonts-liberation xvfb wget unzip
 
-# Install google-chrome
-RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-    && dpkg -i google-chrome*.deb \
-    && rm google-chrome*.deb
+# Install google-chrome-driver
+RUN wget -q https://chromedriver.storage.googleapis.com/104.0.5112.79/chromedriver_linux64.zip
+RUN unzip chromedriver_linux64.zip \
+    && rm chromedriver_linux64.zip
 
 # (Optional) Start dbus in WSL, see https://github.com/microsoft/WSL/issues/376#issuecomment-295933508
 RUN /etc/init.d/dbus start
 
+# Install google-chrome
+RUN apt-get install -y wget
+RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
+
+
 ENV PATH=/usr/local/bin:$PATH
-
-
-
-
-
-
-
-
-
-
 
 CMD ["sleep", "3600"]
