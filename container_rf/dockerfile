@@ -1,4 +1,5 @@
-FROM python:slim-buster
+# FROM python:slim-buster
+FROM python:3.11-rc-slim-buster
 
 # # Setup X Window Virtual Framebuffer
 # ENV SCREEN_COLOUR_DEPTH 24
@@ -90,6 +91,57 @@ RUN apt-get -y upgrade
 # RUN git clone https://github.com/nicotrorigolo/robot_jenkins.git
 # RUN mv robot_jenkins/Tests/test_robot_google.robot .
 
+# ###################
+# # c'est ok DEBUT
+# ###################
+
+# RUN apt-get install -y git
+
+# RUN git clone https://github.com/nicotrorigolo/robot_jenkins.git
+# RUN mv robot_jenkins/tests/test_robot_google.robot .
+# RUN mv robot_jenkins/requirements.txt .
+# RUN mv robot_jenkins/tests/aaa.robot .
+# RUN mv robot_jenkins/chromeConfiguration.py .
+
+# # COPY src/env/drivers/Linux/chromedriver /usr/local/bin
+
+# RUN chmod +x /usr/local/bin/
+
+# # Install python packages
+# RUN /usr/local/bin/python -m pip install --upgrade pip
+# RUN pip install -r requirements.txt
+
+# # Install dependencies of Chrome driver and chrome
+# # Notice that xvfb is an in-memory display server for Linux
+# RUN apt-get update && \
+#     apt-get install -y libnss3 libdbus-1-dev && \
+#     apt-get install -y xdg-utils libgbm1 libasound2 fonts-liberation xvfb wget unzip
+
+# # Install google-chrome-driver
+# RUN wget -q https://chromedriver.storage.googleapis.com/104.0.5112.79/chromedriver_linux64.zip
+# RUN unzip chromedriver_linux64.zip \
+#     && rm chromedriver_linux64.zip
+
+# # (Optional) Start dbus in WSL, see https://github.com/microsoft/WSL/issues/376#issuecomment-295933508
+# RUN /etc/init.d/dbus start
+
+# # Install google-chrome
+# RUN apt-get install -y wget
+# RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
+
+
+# ENV PATH=/usr/local/bin:$PATH
+
+# # CMD ["sleep", "3600"]
+
+
+# ###################
+# # c'est ok FIN
+# ###################
+
+
+
 
 RUN apt-get install -y git
 
@@ -99,13 +151,9 @@ RUN mv robot_jenkins/requirements.txt .
 RUN mv robot_jenkins/tests/aaa.robot .
 RUN mv robot_jenkins/chromeConfiguration.py .
 
-# COPY src/env/drivers/Linux/chromedriver /usr/local/bin
-
-RUN chmod +x /usr/local/bin/
-
-# Install python packages
-RUN /usr/local/bin/python -m pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install  \
+    robotframework \
+    robotframework-seleniumlibrary
 
 # Install dependencies of Chrome driver and chrome
 # Notice that xvfb is an in-memory display server for Linux
@@ -114,7 +162,7 @@ RUN apt-get update && \
     apt-get install -y xdg-utils libgbm1 libasound2 fonts-liberation xvfb wget unzip
 
 # Install google-chrome-driver
-RUN wget -q https://chromedriver.storage.googleapis.com/104.0.5112.79/chromedriver_linux64.zip
+RUN wget -q https://chromedriver.storage.googleapis.com/105.0.5195.52/chromedriver_linux64.zip
 RUN unzip chromedriver_linux64.zip \
     && rm chromedriver_linux64.zip
 
@@ -127,6 +175,17 @@ RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd6
 RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
 
 
-ENV PATH=/usr/local/bin:$PATH
+
+
+
+
+
+
+
+
+
+
+
+
 
 CMD ["sleep", "3600"]
