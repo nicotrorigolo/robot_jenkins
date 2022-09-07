@@ -19,9 +19,10 @@ Connexion au site de Google
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --disable-gpu
     Call Method    ${chrome_options}    add_argument    --disable-dev-shm-usage
-    Call Method    ${chrome_options}    add_argument    --window-size=1920,1080
+    #Call Method    ${chrome_options}    add_argument    --window-size=1920,1080
     # Call Method    ${chrome_options}    add_argument    --log-level=ALL
     Open Browser    ${url}    ${BROWSER}    options=${chrome_options}
+    Set Window Size  1920  1080
     Maximize Browser Window    # Mettre la fenetre de chrome en plein ecran
     Capture Page Screenshot
 

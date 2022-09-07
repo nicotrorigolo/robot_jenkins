@@ -143,13 +143,6 @@ RUN apt-get -y upgrade
 
 
 
-RUN apt-get install -y git
-
-RUN git clone https://github.com/nicotrorigolo/robot_jenkins.git
-RUN mv robot_jenkins/tests/test_robot_google.robot .
-RUN mv robot_jenkins/requirements.txt .
-RUN mv robot_jenkins/tests/aaa.robot .
-RUN mv robot_jenkins/chromeConfiguration.py .
 
 RUN pip install  \
     robotframework \
@@ -165,6 +158,7 @@ RUN apt-get update && \
 RUN wget -q https://chromedriver.storage.googleapis.com/105.0.5195.52/chromedriver_linux64.zip
 RUN unzip chromedriver_linux64.zip \
     && rm chromedriver_linux64.zip
+RUN mv chromedriver bin
 
 # (Optional) Start dbus in WSL, see https://github.com/microsoft/WSL/issues/376#issuecomment-295933508
 RUN /etc/init.d/dbus start
@@ -174,7 +168,17 @@ RUN apt-get install -y wget
 RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
 
+WORKDIR /robots
+VOLUME [ "/robots" ]
 
+RUN apt-get install -y git
+RUN apt-get install -y nano
+
+RUN git clone https://github.com/nicotrorigolo/robot_jenkins.git
+RUN mv robot_jenkins/tests/test_robot_google.robot .
+# RUN mv robot_jenkins/requirements.txt .
+RUN mv robot_jenkins/tests/aaa.robot .
+# RUN mv robot_jenkins/chromeConfiguration.py .
 
 
 
